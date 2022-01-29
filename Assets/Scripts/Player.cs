@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     bool horizontalInputCheck, verticalInputCheck, camLock;
+    public bool bookLock;
 
     Vector3 newPos, oldPos;
     Quaternion newRot, oldRot;
@@ -27,24 +28,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (camLock)
+        if (bookLock == false)
         {
-            if (Input.GetAxisRaw("Vertical") == -1)
+            if (camLock)
             {
-                //go out of cam lock
-                newPos = oldPos;
-                newRot = oldRot;
+                if (Input.GetAxisRaw("Vertical") == -1)
+                {
+                    //go out of cam lock
+                    newPos = oldPos;
+                    newRot = oldRot;
+                }
+
+                if (transform.position == oldPos && transform.rotation == oldRot && Input.GetAxisRaw("Vertical") == 0)
+                {
+                    camLock = false;
+                }
             }
 
-            if(transform.position == oldPos && transform.rotation == oldRot && Input.GetAxisRaw("Vertical") == 0)
-            {
-                camLock = false;
-            }
+            LerpToPosition();
+            RotateToPosition();
         }
-
-        LerpToPosition();
-        RotateToPosition();
-
 
     }
 
@@ -172,10 +175,10 @@ public class Player : MonoBehaviour
 
                 if (inventory.Count == 2)
                 {
-                    inventory[i].transform.rotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (Mathf.Pow(-1, i + 1)), Camera.main.transform.right.y, Camera.main.transform.right.z);
+                    inventory[i].transform.localRotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (Mathf.Pow(-1, i + 1)), transform.localEulerAngles.y, transform.localEulerAngles.z);
                 }
                 else
-                    inventory[i].transform.rotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (i - 1), Camera.main.transform.right.y, Camera.main.transform.right.z);
+                    inventory[i].transform.localRotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (i - 1), transform.localEulerAngles.y, transform.localEulerAngles.z);
             }
             //max 3 tickets
         }

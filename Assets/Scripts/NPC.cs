@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     bool talking;
 
     public Ticket myTicket;
+    public Transform ticketPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,5 +63,12 @@ public class NPC : MonoBehaviour
         {
             GameObject.Find("NPCDialogue").GetComponent<TextMeshProUGUI>().text = myLine[lineNumber];
         }
+    }
+
+    public void UpdateMyTicket()
+    {
+        myTicket.transform.position = ticketPos.position;
+        myTicket.transform.forward = ticketPos.transform.right;
+        myTicket.transform.parent = this.gameObject.transform;
     }
 }
