@@ -8,6 +8,8 @@ public class Book : MonoBehaviour
     public Transform openBookLoc, closedBookLoc;
     public bool open;
 
+    bool bookInHand;
+
     Animator animator;
 
     private void Awake()
@@ -17,14 +19,20 @@ public class Book : MonoBehaviour
 
     private void Update()
     {
-        if (open)
+        if (!bookInHand)
         {
-            transform.position = Vector3.Lerp(transform.position,openBookLoc.position, 0.01f);
-        }
+            if (open)
+            {
+                transform.position = Vector3.Lerp(transform.position, openBookLoc.position, 0.01f);
+            }
 
-        else
-        {
-            transform.position = Vector3.Lerp(transform.position, closedBookLoc.position, 0.01f);
+            else
+            {
+                if (Vector3.Distance(transform.position, closedBookLoc.position) <= 0.01f)
+                    bookInHand = true;
+
+                transform.position = Vector3.Lerp(transform.position, closedBookLoc.position, 0.01f);
+            }
         }
     }
     private void OnMouseDown()
@@ -41,18 +49,19 @@ public class Book : MonoBehaviour
         //LERP
         //transform.position = openBookLoc.position;
         open = true;
-        Player player = FindObjectOfType<Player>();
-        player.bookLock = true;
+        FindObjectOfType<Player>().bookLock = true;
         //not allowed to walk anymore
         //activate page overlay
 
         //animate book opening
         animator.SetBool("Open", true);
         overlayColliders.SetActive(true);
+        bookInHand = false;
     }
 
     public void Close()
     {
+        FindObjectOfType<Player>().bookLock = false;
         animator.SetBool("Open", false);
         //transform.position = closedBookLoc.position;
         open = false;
