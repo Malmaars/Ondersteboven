@@ -25,8 +25,8 @@ public class NPC : MonoBehaviour
         //simplify camera position to its grid position
         Vector3 simplifiedPlayer = new Vector3(Mathf.Round(Camera.main.transform.position.x), Mathf.Round(Camera.main.transform.position.y), Mathf.Round(Camera.main.transform.position.z));
 
-        Debug.Log(simplifiedPosition);
-        Debug.Log(simplifiedPlayer);
+        //Debug.Log(simplifiedPosition);
+        //Debug.Log(simplifiedPlayer);
 
         if(simplifiedPlayer == simplifiedPosition)
         {

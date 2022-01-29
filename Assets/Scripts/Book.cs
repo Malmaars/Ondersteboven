@@ -14,6 +14,19 @@ public class Book : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    private void Update()
+    {
+        if (open)
+        {
+            transform.position = Vector3.Lerp(transform.position,openBookLoc.position, 0.01f);
+        }
+
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, closedBookLoc.position, 0.01f);
+        }
+    }
     private void OnMouseDown()
     {
         //get in ur face
@@ -26,7 +39,7 @@ public class Book : MonoBehaviour
     void Open()
     {
         //LERP
-        transform.position = openBookLoc.position;
+        //transform.position = openBookLoc.position;
         open = true;
         Player player = FindObjectOfType<Player>();
         player.bookLock = true;
@@ -41,7 +54,7 @@ public class Book : MonoBehaviour
     public void Close()
     {
         animator.SetBool("Open", false);
-        transform.position = closedBookLoc.position;
+        //transform.position = closedBookLoc.position;
         open = false;
 
         overlayColliders.SetActive(false);
