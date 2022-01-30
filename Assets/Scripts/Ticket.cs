@@ -13,6 +13,7 @@ public class Ticket : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        Debug.Log("I Click on ticket");
         //add ticket to hand
         //if hand is full, don't pick up ticket
 
@@ -32,11 +33,13 @@ public class Ticket : MonoBehaviour
             //give ticket to NPC if they are in view.
             NPC[] allNPCs = FindObjectsOfType<NPC>();
 
-            Vector3 simplifiedPlayer = new Vector3(Mathf.Round(Camera.main.transform.position.x), Mathf.Round(Camera.main.transform.position.y), Mathf.Round(Camera.main.transform.position.z));
-
+            Debug.Log(allNPCs.Length);
             foreach (NPC npc in allNPCs)
             {
-                if(simplifiedPlayer == npc.simplifiedPosition)
+                Debug.Log(FindObjectOfType<Player>().currentNPC);
+                Debug.Log(npc);
+                //this doesn't work anymore
+                if(FindObjectOfType<Player>().currentNPC != null && FindObjectOfType<Player>().currentNPC == npc)
                 {
                     //there is an npc in ur view
                     if (npc.myTicket == null)

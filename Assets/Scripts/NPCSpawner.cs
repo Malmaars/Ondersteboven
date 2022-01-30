@@ -10,6 +10,7 @@ public class NPCSpawner : MonoBehaviour
     public GameObject npcPrefab;
 
     public Transform[] PossibleNPCLocations;
+    public Transform[] CamLocations;
     bool[] isSomeoneSittingThere;
 
     [Serializable]
@@ -54,6 +55,7 @@ public class NPCSpawner : MonoBehaviour
         //give random location
         npc.transform.position = PossibleNPCLocations[randomInt].position;
         npc.transform.rotation = PossibleNPCLocations[randomInt].rotation;
+        npc.GetComponent<NPC>().cameraPos = CamLocations[randomInt];
         isSomeoneSittingThere[randomInt] = true;
 
         //randomInt = UnityEngine.Random.Range(0, DifferentLines.Length);

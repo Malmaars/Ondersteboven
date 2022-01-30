@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     public List<GameObject> inventory;
     public GameObject hand;
+
+    public NPC currentNPC;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
                     //go out of cam lock
                     newPos = oldPos;
                     newRot = oldRot;
+                    currentNPC = null;
                 }
 
                 if (transform.position == oldPos && transform.rotation == oldRot && Input.GetAxisRaw("Vertical") == 0)
@@ -142,18 +145,37 @@ public class Player : MonoBehaviour
 
         Vector3 CheckPos = transform.position + transform.forward * Input.GetAxisRaw("Vertical");
         //if a special view is in that position, switch to the special view.
-        GameObject[] specialviews = GameObject.FindGameObjectsWithTag("SpecialView");
+        //GameObject[] specialviews = GameObject.FindGameObjectsWithTag("SpecialView");
 
-        foreach(GameObject view in specialviews)
+        //foreach(GameObject view in specialviews)
+        //{
+        //    if(view.transform.position.x < CheckPos.x + 0.5f && view.transform.position.x > CheckPos.x - 0.5f &&
+        //       view.transform.position.y < CheckPos.y + 0.5f && view.transform.position.y > CheckPos.y- 0.5f &&
+        //       view.transform.position.z < CheckPos.z + 0.5f && view.transform.position.z > CheckPos.z - 0.5f)
+        //    {
+        //        //there is a special cam there. go to the special cam.
+        //        return view.transform;
+        //    }
+        //}
+
+        NPC[] npcs = FindObjectsOfType<NPC>();
+
+        foreach(NPC singleNPC in npcs)
         {
-            if(view.transform.position.x < CheckPos.x + 0.5f && view.transform.position.x > CheckPos.x - 0.5f &&
-               view.transform.position.y < CheckPos.y + 0.5f && view.transform.position.y > CheckPos.y- 0.5f &&
-               view.transform.position.z < CheckPos.z + 0.5f && view.transform.position.z > CheckPos.z - 0.5f)
+            //Debug.Log(CheckPos);
+            //Debug.Log(singleNPC.simplifiedPosition);
+            if(singleNPC.simplifiedPosition == CheckPos)
             {
-                //there is a special cam there. go to the special cam.
-                return view.transform;
+                currentNPC = singleNPC;
+                //character can start talking
+                singleNPC.talking = true;
+                singleNPC.Talk();
+                return singleNPC.cameraPos;
+
             }
         }
+
+        currentNPC = null;
 
         return null;
     }
@@ -163,7 +185,7 @@ public class Player : MonoBehaviour
         if(inventory.Count > 0)
         {
             //show them
-            hand.transform.localPosition = new Vector3(0.35f, -0.2f, 0.5f);
+            hand.transform.localPosition = new Vector3(0.185f, -0.2f, 0.5f);
             for(int i = 0; i < inventory.Count; i++)
             {
                 //maak een waaier van tickets?
