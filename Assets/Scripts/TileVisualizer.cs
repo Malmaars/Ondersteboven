@@ -11,7 +11,7 @@ public class TileVisualizer : MonoBehaviour
         Gizmos.color = Color.green;
         foreach(GameObject tile in walkableTiles)
         {
-            Gizmos.DrawWireCube(tile.transform.position, new Vector3(1, 1, 1));
+            Gizmos.DrawWireCube(tile.transform.position, new Vector3(0.95f, 0.95f, 0.95f));
         }
 
         Gizmos.color = Color.red;
@@ -19,7 +19,7 @@ public class TileVisualizer : MonoBehaviour
 
         foreach (GameObject tile in unWalkableTiles)
         {
-            Gizmos.DrawWireCube(tile.transform.position, new Vector3(1, 1, 1));
+            Gizmos.DrawWireCube(tile.transform.position, new Vector3(0.95f, 0.95f, 0.95f));
         }
     }
 }

@@ -175,10 +175,10 @@ public class Player : MonoBehaviour
 
                 if (inventory.Count == 2)
                 {
-                    inventory[i].transform.localRotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (Mathf.Pow(-1, i + 1)), transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    inventory[i].transform.rotation = hand.transform.GetChild(i + 1).transform.rotation;
                 }
                 else
-                    inventory[i].transform.localRotation = Quaternion.Euler((20 * (inventory.Count - 1)) * (i - 1), transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    inventory[i].transform.rotation = hand.transform.GetChild(i).transform.rotation;
             }
             //max 3 tickets
         }
