@@ -114,7 +114,7 @@ public class StationManager : MonoBehaviour
 
             stationMesh.material = stationVisuals[stationNumber];
 
-
+            stationNumber++;
             timer = 0;
             direction = -1;
             //next station
