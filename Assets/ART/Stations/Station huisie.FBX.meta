@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 4d1720fd35c410a4f810683dcb8b5ac3
+guid: c1eefd46c8143d34b9e337f6e3bef3e9
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 0d0c20e6328aada498a53b58878d7798, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 22b7ca88c6be2ae40ade96495c1fa9b6, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 331f9bcf1f000421b0c291d9071b32b5
+    second: {fileID: 2800000, guid: b083ac46790b86540b53fbabe6974f0c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: x-beton_pro_concrete-grey-rett_3_concrete-grey_30_5x61_f35
+    second: {fileID: 2800000, guid: 20d201b3bd711004b8b3c90504f7023b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
