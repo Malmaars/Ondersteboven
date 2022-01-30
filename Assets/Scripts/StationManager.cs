@@ -119,10 +119,10 @@ public class StationManager : MonoBehaviour
             direction = -1;
             //next station
             //stationNumber += 1;
-            //if(stationNumber == 5)
-            //{
-            //    stationNumber = 0;
-            //}
+            if (stationNumber == 5)
+            {
+                stationNumber = 0;
+            }
         }
 
         if(timer < -6)
