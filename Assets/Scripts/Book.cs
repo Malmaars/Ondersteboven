@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Book : MonoBehaviour
 {
+    public AudioClip openSound, closeSound;
     public GameObject overlayColliders;
     public Transform openBookLoc, closedBookLoc;
     public bool open;
@@ -57,6 +58,8 @@ public class Book : MonoBehaviour
         animator.SetBool("Open", true);
         overlayColliders.SetActive(true);
         bookInHand = false;
+
+        GetComponent<AudioSource>().PlayOneShot(openSound);
     }
 
     public void Close()
@@ -67,5 +70,6 @@ public class Book : MonoBehaviour
         open = false;
 
         overlayColliders.SetActive(false);
+        GetComponent<AudioSource>().PlayOneShot(closeSound);
     }
 }

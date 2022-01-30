@@ -32,39 +32,39 @@ public class NPC : MonoBehaviour
         //simplify my position to my grid position
         simplifiedPosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 8.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 7)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 7.5f);
+            simplifiedPosition = new Vector3(0, 1, 6);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 9.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 8)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 10.5f);
+            simplifiedPosition = new Vector3(0, 1, 9);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 14.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 13)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 13.5f);
+            simplifiedPosition = new Vector3(0, 1, 14);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 15.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 16)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 16.5f);
+            simplifiedPosition = new Vector3(0, 1, 17);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 20.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 21)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 19.5f);
+            simplifiedPosition = new Vector3(0, 1, 20);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 21.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 22)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 22.5f);
+            simplifiedPosition = new Vector3(0, 1, 23);
         }
 
-        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 26.5)
+        if (simplifiedPosition.x == -1 && simplifiedPosition.z == 27)
         {
-            simplifiedPosition = new Vector3(-0.5f, 0, 25.5f);
+            simplifiedPosition = new Vector3(0, 1, 26);
         }
     }
 
