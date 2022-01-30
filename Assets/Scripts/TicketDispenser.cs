@@ -6,16 +6,31 @@ public class TicketDispenser : MonoBehaviour
 {
     //I can cycle through available ticket with an array
     public GameObject ticket;
-    public Transform ticketLocation;
+    public Material[] ticketTypes;
+    //public Transform ticketLocation;
 
     public bool ticketDispensed;
+
+    public int destinationOnTicket;
     private void OnMouseDown()
     {
+        Debug.Log("ClickButton");
+        Player player = FindObjectOfType<Player>();
         //dispense ticket
-        if (!ticketDispensed)
+
+        Debug.Log(Vector3.Distance(Camera.main.transform.position, this.transform.position));
+        if (player.inventory.Count < 3 && Vector3.Distance(Camera.main.transform.position, this.transform.position) < 0.74f)
         {
-            Instantiate(ticket, ticketLocation.position, ticketLocation.rotation, null);
-            ticketDispensed = true;
+            GetComponent<Animator>().SetTrigger("Stamp");
+
+            GameObject temp = Instantiate(ticket);
+            temp.GetComponent<Ticket>().destination = destinationOnTicket;
+            temp.GetComponentInChildren<MeshRenderer>().material = ticketTypes[destinationOnTicket];
+
+
+            //change the ticket type
+            player.inventory.Add(temp);
+            player.UpdateInventory();
         }
     }
 }

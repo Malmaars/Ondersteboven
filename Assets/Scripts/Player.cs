@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     GameObject[] walkableTiles;
 
+    public Transform stampView;
     public List<GameObject> inventory;
     public GameObject hand;
 
@@ -175,6 +176,11 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(CheckPos == new Vector3(0, 1, 25))
+        {
+            return stampView;
+        }
+
         currentNPC = null;
 
         return null;
@@ -193,6 +199,7 @@ public class Player : MonoBehaviour
                 //change this (hand.transform) to another transform later
                 inventory[i].transform.parent = hand.transform;
                 inventory[i].transform.position = hand.transform.GetChild(0).transform.position;
+                inventory[i].transform.localPosition = new Vector3(0, 0.3f, 0 + i * 0.01f);
                 //inventory[i].transform.rotation = hand.transform.GetChild(0).transform.rotation;
 
                 if (inventory.Count == 2)

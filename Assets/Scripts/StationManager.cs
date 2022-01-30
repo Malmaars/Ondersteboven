@@ -41,7 +41,7 @@ public class StationManager : MonoBehaviour
             foreach(NPC npc in allNPCs)
             {
                 //npc has a ticket
-                if(npc.myTicket != null)
+                if(npc.myTicket != null && npc.myTicket.destination == stationNumber)
                 {
                     npcsGettingOut.Add(npc);
 
@@ -101,6 +101,11 @@ public class StationManager : MonoBehaviour
             direction = 1;
             MainCamera.SetActive(true);
             visualGameobject.SetActive(false);
+            foreach(NPC npc in npcsGettingOut)
+            {
+                npcsGettingOut.Remove(npc);
+                Destroy(npc.gameObject);
+            }
         }
 
 

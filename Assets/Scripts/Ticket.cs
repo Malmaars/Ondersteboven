@@ -6,6 +6,7 @@ public class Ticket : MonoBehaviour
 {
     Player player;
     bool inHand;
+    public int destination;
 
     private void Awake()
     {
@@ -17,46 +18,44 @@ public class Ticket : MonoBehaviour
         //add ticket to hand
         //if hand is full, don't pick up ticket
 
-        if (!inHand)
-        {
-            if (player.inventory.Count < 3)
-            {
-                player.inventory.Add(this.gameObject);
-                player.UpdateInventory();
-                inHand = true;
-                FindObjectOfType<TicketDispenser>().ticketDispensed = false;
-            }
-        }
+        //if (!inHand)
+        //{
+        //    if (player.inventory.Count < 3)
+        //    {
+        //        player.inventory.Add(this.gameObject);
+        //        player.UpdateInventory();
+        //        inHand = true;
+        //        FindObjectOfType<TicketDispenser>().ticketDispensed = false;
+        //    }
+        //}
 
-        else
-        {
-            //give ticket to NPC if they are in view.
-            NPC[] allNPCs = FindObjectsOfType<NPC>();
+        //give ticket to NPC if they are in view.
+        NPC[] allNPCs = FindObjectsOfType<NPC>();
 
-            Debug.Log(allNPCs.Length);
-            foreach (NPC npc in allNPCs)
+        Debug.Log(allNPCs.Length);
+        foreach (NPC npc in allNPCs)
+        {
+            Debug.Log(FindObjectOfType<Player>().currentNPC);
+            Debug.Log(npc);
+            //this doesn't work anymore
+            if (FindObjectOfType<Player>().currentNPC != null && FindObjectOfType<Player>().currentNPC == npc)
             {
-                Debug.Log(FindObjectOfType<Player>().currentNPC);
-                Debug.Log(npc);
-                //this doesn't work anymore
-                if(FindObjectOfType<Player>().currentNPC != null && FindObjectOfType<Player>().currentNPC == npc)
+                //there is an npc in ur view
+                if (npc.myTicket == null)
                 {
-                    //there is an npc in ur view
-                    if (npc.myTicket == null)
-                    {
-                        //they don't have a ticket yet
-                        //so give em a ticket
-                        player.inventory.Remove(this.gameObject);
-                        player.UpdateInventory();
+                    //they don't have a ticket yet
+                    //so give em a ticket
+                    player.inventory.Remove(this.gameObject);
+                    player.UpdateInventory();
 
-                        npc.myTicket = this;
-                        //update the position of the ticket
-                        npc.UpdateMyTicket();
-                        
-                    }
+                    npc.myTicket = this;
+                    //update the position of the ticket
+                    npc.UpdateMyTicket();
+
                 }
             }
         }
+
 
     }
 }

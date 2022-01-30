@@ -3,7 +3,9 @@ guid: 29a285992455b354ab91510325302b68
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ticket: {fileID: 1731181887072491594, guid: 2097c93c35b9b0e4a90d1288697fa546, type: 3}
+  - ticketLocation: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
