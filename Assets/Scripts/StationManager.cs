@@ -28,7 +28,7 @@ public class StationManager : MonoBehaviour
     public Transform pointer;
 
     int secondLimit = 180;
-    float timerRot = 0;
+    float timerRot = -72;
     // Start is called before the first frame update
     void Start()
     {
