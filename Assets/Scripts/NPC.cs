@@ -24,11 +24,48 @@ public class NPC : MonoBehaviour
     public int destination;
 
     int currentLetterAnim;
+
+    public int deathCounter;
     // Start is called before the first frame update
     void Start()
     {
         //simplify my position to my grid position
         simplifiedPosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 8.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 7.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 9.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 10.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 14.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 13.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 15.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 16.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 20.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 19.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 21.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 22.5f);
+        }
+
+        if (simplifiedPosition.x == -1.5 && simplifiedPosition.z == 26.5)
+        {
+            simplifiedPosition = new Vector3(-0.5f, 0, 25.5f);
+        }
     }
 
     // Update is called once per frame

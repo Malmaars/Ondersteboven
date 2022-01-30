@@ -31,16 +31,32 @@ public class StationManager : MonoBehaviour
                 if(npc.myTicket != null)
                 {
                     npcsGettingOut.Add(npc);
+
                     //correct destination
                     if(npc.destination == stationNumber)
                     {
-
+                        //replace later
+                        Destroy(npc.gameObject);
                     }
 
                     //incorrect
                     else
                     {
+                        //replace later
+                        Destroy(npc.gameObject);
+                    }
+                }
 
+                else
+                {
+                    if(npc.destination == stationNumber)
+                    {
+                        npc.deathCounter += 1;
+                        if(npc.deathCounter >= 3)
+                        {
+                            //die
+                            Destroy(npc.gameObject);
+                        }
                     }
                 }
             }

@@ -771,6 +771,7 @@ MonoBehaviour:
   myTicket: {fileID: 0}
   ticketPos: {fileID: 1526821110}
   destination: 0
+  deathCounter: 0
 --- !u!1 &83654446
 GameObject:
   m_ObjectHideFlags: 0
@@ -8613,6 +8614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PossibleNPCLocations: []
+  DifferentLines: []
 --- !u!4 &1336604691
 Transform:
   m_ObjectHideFlags: 0
