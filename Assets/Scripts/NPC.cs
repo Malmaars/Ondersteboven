@@ -70,12 +70,12 @@ public class NPC : MonoBehaviour
 
         if(simplifiedPosition.x == -1 && simplifiedPosition.z == -3)
         {
-            simplifiedPosition = new Vector3(-1, 1, 4);
+            simplifiedPosition = new Vector3(-1, 1, -2);
         }
 
         if (simplifiedPosition.x == 1 && simplifiedPosition.z == -3)
         {
-            simplifiedPosition = new Vector3(1, 1, 4);
+            simplifiedPosition = new Vector3(1, 1, -2);
         }
 
         if (simplifiedPosition.x == 1 && simplifiedPosition.z == 53)

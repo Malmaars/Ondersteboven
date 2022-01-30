@@ -15,7 +15,7 @@ public class BookPages : MonoBehaviour
         if (!leftRight)
         {
             //go a page back
-            if (book.pageNumber < 4)
+            if (book.pageNumber < 6)
             {
                 book.pageNumber++;
             }
