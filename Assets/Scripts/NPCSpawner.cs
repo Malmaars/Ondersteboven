@@ -21,6 +21,8 @@ public class NPCSpawner : MonoBehaviour
     }
     public PossibleLines[] DifferentLines;
 
+    public AudioClip[] voicePossibilities;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,7 @@ public class NPCSpawner : MonoBehaviour
         }
     }
 
-    void SpawnNPC()
+    public void SpawnNPC()
     {
         GameObject npc = Instantiate(npcPrefab);
 
@@ -58,15 +60,17 @@ public class NPCSpawner : MonoBehaviour
         npc.GetComponent<NPC>().cameraPos = CamLocations[randomInt];
         isSomeoneSittingThere[randomInt] = true;
 
-        //randomInt = UnityEngine.Random.Range(0, DifferentLines.Length);
+        randomInt = UnityEngine.Random.Range(0, DifferentLines.Length);
 
         ////random text & fitting destination
-        //npc.GetComponent<NPC>().myLine = DifferentLines[randomInt].line;
-        //npc.GetComponent<NPC>().destination = DifferentLines[randomInt].destination;
+        npc.GetComponent<NPC>().myLine = DifferentLines[randomInt].line;
+        npc.GetComponent<NPC>().destination = DifferentLines[randomInt].destination;
 
         //set a random accessory
         randomInt = UnityEngine.Random.Range(3, 16);
         npc.transform.GetChild(randomInt).gameObject.SetActive(true);
 
+        randomInt = UnityEngine.Random.Range(0, voicePossibilities.Length);
+        npc.GetComponent<NPC>().myVoice = voicePossibilities[randomInt];
     }
 }

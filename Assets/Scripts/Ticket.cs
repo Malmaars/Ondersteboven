@@ -35,8 +35,8 @@ public class Ticket : MonoBehaviour
         Debug.Log(allNPCs.Length);
         foreach (NPC npc in allNPCs)
         {
-            Debug.Log(FindObjectOfType<Player>().currentNPC);
-            Debug.Log(npc);
+            //Debug.Log(FindObjectOfType<Player>().currentNPC);
+            //Debug.Log(npc);
             //this doesn't work anymore
             if (FindObjectOfType<Player>().currentNPC != null && FindObjectOfType<Player>().currentNPC == npc)
             {

@@ -13,9 +13,15 @@ public class Book : MonoBehaviour
 
     Animator animator;
 
+    public int pageNumber;
+    public Material[] pages;
+    public GameObject boekVoorMaterial;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        Open();
     }
 
     private void Update()
@@ -24,7 +30,7 @@ public class Book : MonoBehaviour
         {
             if (open)
             {
-                transform.position = Vector3.Lerp(transform.position, openBookLoc.position, 0.01f);
+                transform.position = Vector3.Lerp(transform.position, openBookLoc.position, Time.deltaTime * 3);
             }
 
             else
@@ -32,7 +38,7 @@ public class Book : MonoBehaviour
                 if (Vector3.Distance(transform.position, closedBookLoc.position) <= 0.01f)
                     bookInHand = true;
 
-                transform.position = Vector3.Lerp(transform.position, closedBookLoc.position, 0.01f);
+                transform.position = Vector3.Lerp(transform.position, closedBookLoc.position, Time.deltaTime * 3);
             }
         }
     }
@@ -71,5 +77,10 @@ public class Book : MonoBehaviour
 
         overlayColliders.SetActive(false);
         GetComponent<AudioSource>().PlayOneShot(closeSound);
+    }
+
+    public void WisselPagina()
+    {
+        boekVoorMaterial.GetComponent<SkinnedMeshRenderer>().material = pages[pageNumber];
     }
 }

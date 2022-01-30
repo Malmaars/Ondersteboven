@@ -21,6 +21,14 @@ public class StationManager : MonoBehaviour
     Player player;
 
     public Transform[] stationResults;
+
+    public Material[] stationVisuals;
+    public MeshRenderer stationMesh;
+
+    public Transform pointer;
+
+    int secondLimit = 180;
+    float timerRot = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +40,28 @@ public class StationManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * direction;
+
+        //72/secondlimit/5
+        if (direction == 1)
+        {
+            timerRot += Time.deltaTime / 2.5f;
+            pointer.transform.localRotation = Quaternion.Euler(-90, 0, timerRot);
+        }
+
+        if(direction == -1)
+        {
+            //kill peeps
+            foreach (NPC npc in npcsGettingOut)
+            {
+                if (npc.destination != stationNumber)
+                {
+                    //slowly fade and die
+                    npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = new Color(npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.r, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.g, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.b, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.a - Time.deltaTime / 3);
+                }
+            }
+        }
         
-        if(timer >= 15)
+        if(timer >= secondLimit)
         { 
             //check each NPC if they are on location
             NPC[] allNPCs = FindObjectsOfType<NPC>();
@@ -44,22 +72,22 @@ public class StationManager : MonoBehaviour
                 if(npc.myTicket != null && npc.myTicket.destination == stationNumber)
                 {
                     npcsGettingOut.Add(npc);
-
+                    npc.gameObject.transform.position = stationResults[totalLeaving].position;
+                    npc.gameObject.transform.rotation = stationResults[totalLeaving].rotation;
                     //correct destination
-                    if(npc.destination == stationNumber)
+
+                    if (npc.destination == stationNumber)
                     {
                         //replace later
-                        npc.gameObject.transform.position = stationResults[totalLeaving].position;
-                        npc.gameObject.transform.rotation = stationResults[totalLeaving].rotation;
                         goodJobs++;
                     }
 
                     //incorrect
                     else
                     {
+                        Debug.Log("WRONG STATION");
                         //replace later
-                        npc.gameObject.transform.position = stationResults[totalLeaving].position;
-                        npc.gameObject.transform.rotation = stationResults[totalLeaving].rotation;
+                        npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
                         badJobs++;
                     }
 
@@ -84,6 +112,8 @@ public class StationManager : MonoBehaviour
             MainCamera.SetActive(false);
             visualGameobject.SetActive(true);
 
+            stationMesh.material = stationVisuals[stationNumber];
+
 
             timer = 0;
             direction = -1;
@@ -105,6 +135,7 @@ public class StationManager : MonoBehaviour
             {
                 npcsGettingOut.Remove(npc);
                 Destroy(npc.gameObject);
+                FindObjectOfType<NPCSpawner>().SpawnNPC();
             }
         }
 

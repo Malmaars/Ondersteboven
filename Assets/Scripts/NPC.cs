@@ -23,6 +23,8 @@ public class NPC : MonoBehaviour
     public Ticket myTicket;
     public Transform ticketPos;
 
+    public AudioClip myVoice;
+    AudioSource myAudio;
     //getal van 0 t/m 4
     public int destination;
 
@@ -32,6 +34,7 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myAudio = GetComponent<AudioSource>();
         //simplify my position to my grid position
         simplifiedPosition = new Vector3(Mathf.Round(transform.position.x), 1, Mathf.Round(transform.position.z));
 
@@ -63,6 +66,21 @@ public class NPC : MonoBehaviour
         if (simplifiedPosition.x == -1 && simplifiedPosition.z == 24)
         {
             simplifiedPosition = new Vector3(0, 1, 23);
+        }
+
+        if(simplifiedPosition.x == -1 && simplifiedPosition.z == -3)
+        {
+            simplifiedPosition = new Vector3(-1, 1, 4);
+        }
+
+        if (simplifiedPosition.x == 1 && simplifiedPosition.z == -3)
+        {
+            simplifiedPosition = new Vector3(1, 1, 4);
+        }
+
+        if (simplifiedPosition.x == 1 && simplifiedPosition.z == 53)
+        {
+            simplifiedPosition = new Vector3(1, 1, 54);
         }
 
     }
@@ -114,6 +132,13 @@ public class NPC : MonoBehaviour
             {
                 //fuck you
                 talking = false;
+                lineNumber = 0;
+
+                for (int i = letterParent.childCount - 1; i >= 0; i--)
+                {
+                    //everybody is destroying the text
+                    Destroy(letterParent.GetChild(i).gameObject);
+                }
             }
         }
 
@@ -121,10 +146,11 @@ public class NPC : MonoBehaviour
         {
             if (letterParent != null)
             {
-                for (int i = letterParent.childCount - 1; i >= 0; i--)
-                {
-                    Destroy(letterParent.GetChild(i).gameObject);
-                }
+                //for (int i = letterParent.childCount - 1; i >= 0; i--)
+                //{
+                //    //everybody is destroying the text
+                //    Destroy(letterParent.GetChild(i).gameObject);
+                //}
             }
 
             lineNumber = 0;
@@ -166,6 +192,7 @@ public class NPC : MonoBehaviour
 
         if (lineNumber < myLine.Length)
         {
+            myAudio.PlayOneShot(myVoice);
             char[] characters = myLine[lineNumber].ToCharArray();
             GameObject[] characterGameObjects = new GameObject[characters.Length];
 
@@ -177,8 +204,8 @@ public class NPC : MonoBehaviour
                 characterGameObjects[i].transform.parent = letterParent;
                 //characters.Length * 0.2 / 2;
                 //characterGameObjects[i].transform.localPosition = new Vector3(-(characters.Length * 0.15f / 2) + (0.15f * i - 1), 0, 0);
-                characterGameObjects[i].transform.localPosition = new Vector3(-(characters.Length * 30 / 2) + (30 * i), 0, 0);
-                characterGameObjects[i].transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+                characterGameObjects[i].transform.localPosition = new Vector3(-(characters.Length * 24 / 2) + (24 * i), 0, 0);
+                characterGameObjects[i].transform.localScale = new Vector3(1.2f,1.2f,1.2f);
                 //0.2f verschil
                 currentAnimLetter = 0;
                 
@@ -192,6 +219,13 @@ public class NPC : MonoBehaviour
         {
             letterAnimArray = null;
             talking = false;
+            lineNumber = 0;
+
+            for (int i = letterParent.childCount - 1; i >= 0; i--)
+            {
+                //everybody is destroying the text
+                Destroy(letterParent.GetChild(i).gameObject);
+            }
         }
     }
 

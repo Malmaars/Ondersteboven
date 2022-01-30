@@ -12,6 +12,7 @@ public class TicketDispenser : MonoBehaviour
     public bool ticketDispensed;
 
     public int destinationOnTicket;
+    public AudioClip stampSound;
     private void OnMouseDown()
     {
         Debug.Log("ClickButton");
@@ -31,6 +32,8 @@ public class TicketDispenser : MonoBehaviour
             //change the ticket type
             player.inventory.Add(temp);
             player.UpdateInventory();
+
+            GetComponent<AudioSource>().PlayOneShot(stampSound);
         }
     }
 }
