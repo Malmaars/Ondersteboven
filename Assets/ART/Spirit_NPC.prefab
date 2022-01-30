@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myLine:
-  - Hello
+  - Dit is een lange zin
   - Whats up
   simplifiedPosition: {x: 0, y: 0, z: 0}
   talking: 0
