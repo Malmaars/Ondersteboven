@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.SetParent(null);
         //I can set this to any point to start the player wherever I want
         newPos = transform.position;
         newRot = transform.rotation;
@@ -58,6 +59,10 @@ public class Player : MonoBehaviour
             RotateToPosition();
         }
 
+        //if(transform.position.x < -2)
+        //{
+        //    transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        //}
     }
 
     void RotateToPosition()
@@ -68,12 +73,12 @@ public class Player : MonoBehaviour
             //Debug.Log("Q: VerticalInput: " + Input.GetAxisRaw("Vertical") + ", Horizontal Input: " + Input.GetAxisRaw("Horizontal") + ", VerticalInputCheck: " + verticalInputCheck + ", HorizontalInpuCheck: " + horizontalInputCheck);
             horizontalInputCheck = true;
             //if it is, I set a destination target to rotate to
-            newRot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90 * Input.GetAxisRaw("Horizontal"), transform.rotation.eulerAngles.z);
+            newRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90 * Input.GetAxisRaw("Horizontal"), 0);
         }
 
         if(newRot != transform.rotation)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime * 40f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime * 40);
 
             if(Vector3.Distance(transform.rotation.eulerAngles, newRot.eulerAngles) < 1f)
             {
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
 
         if (transform.rotation == newRot && Input.GetAxisRaw("Horizontal") == 0)
         {
-            transform.rotation = Quaternion.Euler(newRot.eulerAngles.x, Mathf.Round(transform.rotation.eulerAngles.y), newRot.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(0, Mathf.RoundToInt(transform.rotation.eulerAngles.y),0);
             horizontalInputCheck = false;
         }
     }
@@ -125,18 +130,20 @@ public class Player : MonoBehaviour
             //Debug.Log("V: VerticalInput: " + Input.GetAxisRaw("Vertical") + ", Horizontal Input: " + Input.GetAxisRaw("Horizontal") + ", VerticalInputCheck: " + verticalInputCheck + ", HorizontalInpuCheck: " + horizontalInputCheck);
             verticalInputCheck = true;
             //if it is, I set a destination target forward or backward from where the player is facing
-            newPos = transform.position + transform.forward * Input.GetAxisRaw("Vertical");
+            newPos = transform.position + transform.forward.normalized * Input.GetAxisRaw("Vertical");
+            //Debug.Log(newPos);
         }
 
-        if (newPos != transform.position)
+        if (transform.position != newPos)
         {
             //we lerp to the destination
-            transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 40f);
+            transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 40);
 
             //If we arrive where we want to go, we can set a new destination again (reset bool)
             if (Vector3.Distance(transform.position, newPos) < 0.01f)
             {
-                transform.position = newPos;
+                //Debug.Log("moving");
+                transform.position = new Vector3(Mathf.RoundToInt(newPos.x), Mathf.RoundToInt(newPos.y), Mathf.RoundToInt(newPos.z));
             }
         }
 

@@ -207,8 +207,7 @@ public class NPC : MonoBehaviour
                 characterGameObjects[i].transform.localPosition = new Vector3(-(characters.Length * 24 / 2) + (24 * i), 0, 0);
                 characterGameObjects[i].transform.localScale = new Vector3(1.2f,1.2f,1.2f);
                 //0.2f verschil
-                currentAnimLetter = 0;
-                
+                currentAnimLetter = 0;                
             }
 
             letterAnimArray = characterGameObjects;

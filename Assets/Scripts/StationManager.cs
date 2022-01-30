@@ -53,7 +53,7 @@ public class StationManager : MonoBehaviour
             //kill peeps
             foreach (NPC npc in npcsGettingOut)
             {
-                if (npc.destination != stationNumber)
+                if (npc.destination != stationNumber - 1)
                 {
                     //slowly fade and die
                     npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color = new Color(npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.r, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.g, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.b, npc.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material.color.a - Time.deltaTime / 3);

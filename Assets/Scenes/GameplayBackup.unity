@@ -1386,7 +1386,7 @@ GameObject:
   - component: {fileID: 142548401}
   m_Layer: 0
   m_Name: GameObject (219)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4602,7 +4602,7 @@ GameObject:
   - component: {fileID: 460565689}
   m_Layer: 0
   m_Name: GameObject (192)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9265,7 +9265,7 @@ GameObject:
   - component: {fileID: 854177006}
   m_Layer: 0
   m_Name: GameObject (193)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14209,7 +14209,7 @@ GameObject:
   - component: {fileID: 1298724020}
   m_Layer: 0
   m_Name: GameObject (220)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18342,7 +18342,7 @@ GameObject:
   - component: {fileID: 1572567095}
   m_Layer: 0
   m_Name: GameObject (166)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19693,7 +19693,7 @@ GameObject:
   - component: {fileID: 1643500652}
   m_Layer: 0
   m_Name: GameObject (164)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20826,7 +20826,7 @@ GameObject:
   - component: {fileID: 1760952719}
   m_Layer: 0
   m_Name: GameObject (165)
-  m_TagString: Walkable
+  m_TagString: UnWalkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
