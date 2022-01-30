@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public GameObject hand;
 
     public NPC currentNPC;
+
+    bool camFix;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
             //Debug.Log("Q: VerticalInput: " + Input.GetAxisRaw("Vertical") + ", Horizontal Input: " + Input.GetAxisRaw("Horizontal") + ", VerticalInputCheck: " + verticalInputCheck + ", HorizontalInpuCheck: " + horizontalInputCheck);
             horizontalInputCheck = true;
             //if it is, I set a destination target to rotate to
-            newRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90 * Input.GetAxisRaw("Horizontal"), 0);
+            newRot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90 * Input.GetAxisRaw("Horizontal"), transform.rotation.eulerAngles.z);
         }
 
         if(newRot != transform.rotation)
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour
 
         if (transform.rotation == newRot && Input.GetAxisRaw("Horizontal") == 0)
         {
-            transform.rotation = Quaternion.Euler(0, Mathf.RoundToInt(transform.rotation.eulerAngles.y),0);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Mathf.RoundToInt(transform.rotation.eulerAngles.y), transform.rotation.eulerAngles.z);
             horizontalInputCheck = false;
         }
     }
@@ -111,6 +113,7 @@ public class Player : MonoBehaviour
                     newRot = specialCamCheck.rotation;
                     return;
                 }
+
             }
 
             for (int i = 0; i < walkableTiles.Length; i++)
@@ -143,7 +146,15 @@ public class Player : MonoBehaviour
             if (Vector3.Distance(transform.position, newPos) < 0.01f)
             {
                 //Debug.Log("moving");
-                transform.position = new Vector3(Mathf.RoundToInt(newPos.x), Mathf.RoundToInt(newPos.y), Mathf.RoundToInt(newPos.z));
+
+                if (newPos.y == 1)
+                    transform.position = new Vector3(Mathf.RoundToInt(newPos.x), Mathf.RoundToInt(newPos.y), Mathf.RoundToInt(newPos.z));
+
+                else
+                {
+                    transform.position = newPos;
+                }
+
             }
         }
 
